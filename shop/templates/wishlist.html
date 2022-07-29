@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="text-dark font-weight-bold text-center">{{ title }}</h1>
+{% if current_user.is_authenticated %}
+<table class="">
+  
+  {% for key, value in display_wishlist.items() %}
+  <body class="text-center">
+    <!-- <td>{{ key }}</td> -->
+    <p>{{ value["title"] }}
+    {{ value["wishlist_quantity"] }}
+    £{{ value["price"] }}
+    £{{ (value["wishlist_quantity"] * value["price"]) }}</p>
+
+    <p>
+      <form action="{{ url_for('delete_wishlist_watch', watch_id=key|int) }}" method="POST">
+        <input class="btn btn-outline-primary" type="submit" value="Delete">
+      </form>
+      <form action="{{ url_for('wishlist_to_cart', watch_id=key|int) }}" method="POST">
+      	<input class="btn btn-outline-primary" type="submit" value="Add to cart">
+      </form></p>
+      
+      
+    
+</body>
+  
+
+	{% endfor %}
+{% elif wishlist_quantity == 0 %}
+There is nothing in your wishlist.
+{% else %}
+Please <a href="{{ url_for('login') }}">Login&nbsp;</a>or <a href="{{ url_for('register') }}">Register</a>&nbspto view your wishlist.
+{% endif %}
+{% endblock content %}

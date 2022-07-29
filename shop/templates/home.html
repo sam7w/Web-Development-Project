@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="text-dark font-weight-bold" class="dropdown" >{{ title }}
+ 
+	<a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; float:right;">Sort by:</a>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		<a href="/price" class="dropdown-item">Price</a>
+		<a href="/watch_size" class="dropdown-item">Watch Size</a>
+	</div>
+</h1>
+
+  {% for watch in watches %} 
+<div style="float: left">
+	<a href="{{ url_for('watch', watch_id=watch.id) }}"><img src = "{{ url_for('static', filename='img/' + watch.image_file) }}" width="336" height="220">
+  	<p style="font-size: 25px" class="font-weight-bold text-center">{{ watch.brand.brand_name }}</p>
+    <p class="text-center">{{ watch.title }}</p>
+    <p class="text-center">{{ watch.quick_description }}</p>
+    <p class="text-center">£{{ watch.price }}</p>
+    <p class="text-center"><a id="home" href="/add_to_cart/{{watch.id}}">Add to Cart</a></p>
+</div>
+   
+
+    
+  {% endfor %}
+{% endblock content %}

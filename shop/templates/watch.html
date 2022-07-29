@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %} 
+<div class="tile" data-scale="2.5" image=>
+	
+</div>
+  <img  id="imgZoom" width="420" height="275" onmousemove="zoomIn(event)" onmouseout="zoomOut()" src = "{{ url_for('static', filename='img/' + watch.image_file) }}" >
+ <div id="overlay" onmousemove="zoomIn(event)" style=""></div>
+ 
+  
+  <p class="font-weight-bold" style="font-size: 27px">{{ watch.brand.brand_name }}</p>
+  <p  class="font-weight-bold" style="font-size: 20px">{{ watch.title }} </p>
+  <dl>
+    <dt >Material:</dt>
+    <dd>{{ watch.quick_description }}</dd>
+    <dt >Braclet:</dt>
+      <dd>{{ watch.braclet }}</dd>
+    <dt >Water-resistance:</dt> 
+      <dd>{{ watch.water_resistance }}</dd>
+    <dt >Bezel:</dt>
+      <dd>{{ watch.bezel }}</dd>
+    <dt >Description:</dt>
+      <dd>{{ watch.description }}</dd>
+    <dt>Price:</dt>
+    <dd>£{{ watch.price }}</dd>
+  </dl>
+  <a class="btn btn-outline-primary" href="/add_to_wishlist/{{watch.id}}">Add to Wishlist</a>
+  <a class="btn btn-outline-primary" href="/add_to_cart/{{watch.id}}">Add to Cart</a>
+
+{% endblock content %}
